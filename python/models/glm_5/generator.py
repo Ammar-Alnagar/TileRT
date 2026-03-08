@@ -179,6 +179,9 @@ class GLM5Generator:
                 add_generation_prompt=True,
                 enable_thinking=self.enable_thinking,
             )
+            # adapt to transformers 5.2.0
+            if not isinstance(prompt_tokens, list) and prompt_tokens.get('input_ids') is not None:
+                prompt_tokens = prompt_tokens['input_ids']
 
         max_seq_len = self.config.max_seq_len
         prompt_len = len(prompt_tokens)
@@ -270,6 +273,9 @@ class GLM5Generator:
                 add_generation_prompt=True,
                 enable_thinking=self.enable_thinking,
             )
+            # adapt to transformers 5.2.0
+            if not isinstance(prompt_tokens, list) and prompt_tokens.get('input_ids') is not None:
+                prompt_tokens = prompt_tokens['input_ids']
 
         max_seq_len = self.config.max_seq_len
         prompt_len = len(prompt_tokens)
